@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95{
+public class Saab95 {
 
     public boolean turboOn;
     public int nrDoors; // Number of doors on the car
@@ -67,13 +67,13 @@ public class Saab95{
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
     
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
-    }
-
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
-    }
+//    // TODO fix this method according to lab pm
+//    public void gas(double amount){
+//        incrementSpeed(amount);
+//    }
+//
+//    // TODO fix this method according to lab pm
+//    public void brake(double amount){
+//        decrementSpeed(amount);
+//    }
 }
