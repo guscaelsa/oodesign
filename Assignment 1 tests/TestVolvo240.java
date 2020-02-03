@@ -68,13 +68,13 @@ public class TestVolvo240 {
 
     void _speedInc(Volvo240 car, double amount, double result) {
         help.print("Increment", amount, "...");
-        car.gas(amount);
+        car.incrementSpeed(amount);
         assertEquals(car.getCurrentSpeed(), result, SPEED_DELTA);
     }
 
     void _speedDec(Volvo240 car, double amount, double result) {
         help.print("Decrement", amount, "...");
-        car.brake(amount);
+        car.decrementSpeed(amount);
         assertEquals(car.getCurrentSpeed(), result, SPEED_DELTA);
     }
 }

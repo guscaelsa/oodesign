@@ -62,4 +62,40 @@ public class TestVehicle {
         c.move();
         assertArrayEquals(new double[]{x, y}, c.getPos(), 0.001);
     }
+
+    @Test
+    public void testGasOk() {
+        Car c = new Car();
+        c.gas(0);
+        c.gas(0.5);
+        c.gas(1);
+    }
+    @Test(expected = RuntimeException.class)
+    public void testGasTooLow() {
+        Car c = new Car();
+        c.gas(-0.5);
+    }
+    @Test(expected = RuntimeException.class)
+    public void testGasTooHigh() {
+        Car c = new Car();
+        c.gas(1.5);
+    }
+
+    @Test
+    public void testBrakeOk() {
+        Car c = new Car();
+        c.brake(0);
+        c.brake(0.5);
+        c.brake(1);
+    }
+    @Test(expected = RuntimeException.class)
+    public void testBrakeTooLow() {
+        Car c = new Car();
+        c.brake(-0.5);
+    }
+    @Test(expected = RuntimeException.class)
+    public void testBrakeTooHigh() {
+        Car c = new Car();
+        c.brake(1.5);
+    }
 }
