@@ -57,7 +57,7 @@ public class TestSaab95 {
         _speedDec(car, 14.24, 82.1125);
         _speedDec(car, -4.4, 87.6125);
         _speedDec(car, 62, 10.1125);
-        _speedDec(car, 20.2, -15.1375);
+        _speedDec(car, 20.2, 0);
     }
 
     @Test
@@ -80,13 +80,13 @@ public class TestSaab95 {
 
     void _speedInc(Saab95 car, double amount, double result) {
         help.print("Increment", amount, "...");
-        car.incrementSpeed(amount);
+        car.gas(amount);
         assertEquals(car.getCurrentSpeed(), result, SPEED_DELTA);
     }
 
     void _speedDec(Saab95 car, double amount, double result) {
         help.print("Decrement", amount, "...");
-        car.decrementSpeed(amount);
+        car.brake(amount);
         assertEquals(car.getCurrentSpeed(), result, SPEED_DELTA);
     }
 }
