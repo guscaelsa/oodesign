@@ -55,9 +55,6 @@ public abstract class Vehicle implements Movable {
 
     /**
      * Speed is always adjusted by this factor
-     *<p>
-     *     L
-     *</p>
      * */
     public abstract double speedFactor();
 
