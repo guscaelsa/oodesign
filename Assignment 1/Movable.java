@@ -32,4 +32,6 @@ public interface Movable {
      *     Returns a double-array with length two ({x, y}).
      * */
     double[] getPos();
+
+    double getCurrentSpeed();
 }

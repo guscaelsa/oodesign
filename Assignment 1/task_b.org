@@ -44,7 +44,7 @@ Skapa en representation av en bilverkstad. Följande aspekter ska hanteras:
   - Exempel: För en märkesverkstad som enbart hanterar Volvo 240 bör vi statiskt kunna veta att bilar som hämtas ut från verkstaden alltid är just Volvo 240.
 
 * (VG) Uppgift 4: Ytterligare extensibilitet
-+ [ ] Skapa en representation av en bilfärja - dvs en färja på vilken det går att lasta bilar. Notera att bilfärjan inte är en bil (doh), men att många av de metoder vi hittills använt för olika sorters bilar bör gå att applicera även på färjan. Hur åstadkommer ni bäst detta?
++ [X] Skapa en representation av en bilfärja - dvs en färja på vilken det går att lasta bilar. Notera att bilfärjan inte är en bil (doh), men att många av de metoder vi hittills använt för olika sorters bilar bör gå att applicera även på färjan. Hur åstadkommer ni bäst detta?
 + [ ] På bilfärjan gäller samma regler som för biltransporten, med undantaget att bilar lossas i samma ordning som de lastades, dvs den första bilen som lastades måste vara först att lossas (first-in-first-out).
 
 Viktiga saker att ha i åtanke under den här uppgiften:
