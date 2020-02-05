@@ -9,14 +9,16 @@ public abstract class Vehicle implements Movable {
     private double currentSpeed;
     private Color color;
     private String modelName;
+    public final int weight; // kg
 
     private Mover m = new Mover();
 
-    public Vehicle(int nrDoors, double enginePower, Color color, String modelName) {
+    public Vehicle(int nrDoors, double enginePower, Color color, String modelName, int weight) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
+        this.weight = weight;
         stopEngine();
     }
 
@@ -130,5 +132,13 @@ public abstract class Vehicle implements Movable {
     @Override
     public double[] getPos() {
         return new double[] {m.x, m.y};
+    }
+
+    /**
+     * Get current position (changed by move())
+     * */
+    public void setPos(double[] pos) {
+        m.x = pos[0];
+        m.y = pos[1];
     }
 }

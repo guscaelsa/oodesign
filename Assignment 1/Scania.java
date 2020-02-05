@@ -13,7 +13,7 @@ public class Scania extends Vehicle {
     private double platformAngle = MIN_ANGLE;
 
     public Scania() {
-        super(2, 90, Color.BLUE, "Scania");
+        super(2, 90, Color.BLUE, "Scania", 17000);
     }
 
     @Override

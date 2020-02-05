@@ -11,7 +11,7 @@ public class TestVehicle {
     class Car extends Vehicle {
 
         public Car() {
-            super(1, 100, Color.BLUE, "TestCar");
+            super(1, 100, Color.BLUE, "TestCar", 1);
         }
 
         @Override
