@@ -1,8 +1,9 @@
+import java.util.HashMap;
 import java.util.Map;
 
-public class Garage<V extends Vehicle> {
+public class Garage<V extends RoadVehicle> {
     private final int max_capacity;
-    Map<Integer, V> storage;
+    Map<Integer, V> storage = new HashMap<>();
 
     public Garage(int max_capacity) {
         this.max_capacity = max_capacity;

@@ -1,14 +1,13 @@
 import org.junit.Test;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-public class TestVehicle {
-    class Car extends Vehicle {
+public class TestRoadVehicle {
+    class Car extends RoadVehicle {
 
         public Car() {
             super(1, 100, Color.BLUE, "TestCar", 1);

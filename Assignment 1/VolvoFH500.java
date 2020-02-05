@@ -1,15 +1,13 @@
 import java.awt.*;
-import java.util.Stack;
-import java.util.Vector;
 
 import static java.lang.Math.abs;
 
-public class VolvoFH500 extends Vehicle {
+public class VolvoFH500 extends RoadVehicle {
     static final int CAR_CAPACITY = 6;
     static final int MAX_CAR_WEIGHT = 4000;
 
     private boolean rampDown = false;
-    private VehicleStorage<Vehicle> storage = new VehicleStorage<>(VehicleStorage.lifoQueue(), CAR_CAPACITY, MAX_CAR_WEIGHT);
+    private VehicleStorage<RoadVehicle> storage = new VehicleStorage<>(VehicleStorage.lifoQueue(), CAR_CAPACITY, MAX_CAR_WEIGHT);
 
     public VolvoFH500() {
         super(2, 500, Color.BLUE, "Volvo FH500", 21000);
@@ -20,7 +18,7 @@ public class VolvoFH500 extends Vehicle {
         return 0;
     }
 
-    public void loadVehicle(Vehicle v) {
+    public void loadVehicle(RoadVehicle v) {
         if (!rampDown) {
             throw new RuntimeException("Vehicles can only be loaded when the ramp is down");
         }
@@ -35,7 +33,7 @@ public class VolvoFH500 extends Vehicle {
         storage.push(v);
     }
 
-    public Vehicle unloadVehicle() {
+    public RoadVehicle unloadVehicle() {
         if (!rampDown) {
             throw new RuntimeException("Vehicles can only be unloaded when ramp is down");
         }
@@ -72,7 +70,7 @@ public class VolvoFH500 extends Vehicle {
     @Override
     public void move() {
         super.move();
-        for (Vehicle v : storage) {
+        for (RoadVehicle v : storage) {
             v.setPos(getPos());
         }
     }

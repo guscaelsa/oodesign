@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Base class for Vehicles
  * */
-public abstract class Vehicle implements Movable {
+public abstract class RoadVehicle implements Movable {
     private int nrDoors;
     protected double enginePower;
     private double currentSpeed;
@@ -13,7 +13,7 @@ public abstract class Vehicle implements Movable {
 
     private Mover m = new Mover();
 
-    public Vehicle(int nrDoors, double enginePower, Color color, String modelName, int weight) {
+    public RoadVehicle(int nrDoors, double enginePower, Color color, String modelName, int weight) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;

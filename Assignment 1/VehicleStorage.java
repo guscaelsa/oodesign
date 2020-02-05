@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Queue;
 
-public class VehicleStorage<V extends Vehicle> implements Iterable<V> {
+public class VehicleStorage<V extends RoadVehicle> implements Iterable<V> {
     private final int capacity;
     private final int maxWeight;
 

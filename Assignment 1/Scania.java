@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Vehicle {
+public class Scania extends RoadVehicle {
     /**
      * Minimum angle allowed for the platform
      */

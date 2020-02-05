@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * A Saab 95
  * */
-public class Saab95 extends Vehicle {
+public class Saab95 extends RoadVehicle {
     private boolean turboOn;
 
     public Saab95(){
