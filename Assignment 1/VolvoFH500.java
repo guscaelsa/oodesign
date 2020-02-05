@@ -7,7 +7,8 @@ public class VolvoFH500 extends RoadVehicle implements Carrier {
     static final int MAX_CAR_WEIGHT = 4000;
 
     private boolean rampDown = false;
-    private VehicleStorage<RoadVehicle> storage = new VehicleStorage<>(VehicleStorage.lifoQueue(), CAR_CAPACITY, MAX_CAR_WEIGHT);
+    private VehicleStorage<RoadVehicle> storage = new VehicleStorage<>(
+            VehicleStorage.lifoQueue(), CAR_CAPACITY, MAX_CAR_WEIGHT);
 
     public VolvoFH500() {
         super(2, 500, Color.BLUE, "Volvo FH500", 21000);
