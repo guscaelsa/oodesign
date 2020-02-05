@@ -37,10 +37,10 @@ aspekter av er kod.
 * Uppgift 3: Parametrisk polymorfism
 Skapa en representation av en bilverkstad. Följande aspekter ska hanteras:
 
-+ [ ] En verkstad ska kunna ta emot ("lasta"?) ett antal bilar, upp till något max-antal som kan variera mellan olika verkstäder.
-+ [ ] Vissa verkstäder ska bara kunna ta emot en viss sorts bilar; andra kan ta emot vilka bilar som helst.
-+ [ ] Att försöka lämna in "fel" sorts bil i en verkstad ska ge ett statiskt (compile time) fel.
-+ [ ] Vid uthämtning av en bil från verkstaden ska vi kunna få så precis typinformation som möjligt statiskt.
++ [X] En verkstad ska kunna ta emot ("lasta"?) ett antal bilar, upp till något max-antal som kan variera mellan olika verkstäder.
++ [X] Vissa verkstäder ska bara kunna ta emot en viss sorts bilar; andra kan ta emot vilka bilar som helst.
++ [X] Att försöka lämna in "fel" sorts bil i en verkstad ska ge ett statiskt (compile time) fel.
++ [X] Vid uthämtning av en bil från verkstaden ska vi kunna få så precis typinformation som möjligt statiskt.
   - Exempel: För en märkesverkstad som enbart hanterar Volvo 240 bör vi statiskt kunna veta att bilar som hämtas ut från verkstaden alltid är just Volvo 240.
 
 * (VG) Uppgift 4: Ytterligare extensibilitet
