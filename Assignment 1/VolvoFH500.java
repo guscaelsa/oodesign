@@ -1,14 +1,15 @@
 import java.awt.*;
 import java.util.Stack;
+import java.util.Vector;
 
 import static java.lang.Math.abs;
 
 public class VolvoFH500 extends Vehicle {
-    private static final int CAR_CAPACITY = 6;
-    private static final int MAX_CAR_WEIGHT = 4000;
+    static final int CAR_CAPACITY = 6;
+    static final int MAX_CAR_WEIGHT = 4000;
 
     private boolean rampDown = false;
-    private Stack<Vehicle> loadedVehicles = new Stack<>();
+    private VehicleStorage<Vehicle> storage = new VehicleStorage<>(VehicleStorage.lifoQueue(), CAR_CAPACITY, MAX_CAR_WEIGHT);
 
     public VolvoFH500() {
         super(2, 500, Color.BLUE, "Volvo FH500", 21000);
@@ -31,22 +32,14 @@ public class VolvoFH500 extends Vehicle {
             throw new RuntimeException("Vehicle to be loaded is too far away");
         }
 
-        if (v.weight > MAX_CAR_WEIGHT) {
-            throw new RuntimeException("Vehicle to be loaded is too heavy");
-        }
-        if (loadedVehicles.size() >= CAR_CAPACITY) {
-            throw new RuntimeException("The carrier is full and can't load more vehicles");
-        }
-        loadedVehicles.push(v);
+        storage.push(v);
     }
 
     public Vehicle unloadVehicle() {
         if (!rampDown) {
             throw new RuntimeException("Vehicles can only be unloaded when ramp is down");
         }
-        Vehicle v = loadedVehicles.pop();
-        v.setPos(getPos());
-        return v;
+        return storage.pop();
     }
 
     void raiseRamp() {
@@ -79,7 +72,7 @@ public class VolvoFH500 extends Vehicle {
     @Override
     public void move() {
         super.move();
-        for (Vehicle v : loadedVehicles) {
+        for (Vehicle v : storage) {
             v.setPos(getPos());
         }
     }

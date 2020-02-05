@@ -104,4 +104,24 @@ public class TestVolvoFH500 {
             assertArrayEquals(v.getPos(), s.getPos(), 0.0001);
         }
     }
+
+    @Test
+    public void testFill() {
+        _fill();
+    }
+
+    VolvoFH500 _fill() {
+        VolvoFH500 v = new VolvoFH500();
+        v.lowerRamp();
+        for (int i=0; i<VolvoFH500.CAR_CAPACITY; ++i) {
+            v.loadVehicle(new Saab95());
+        }
+        return v;
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testFull() {
+        VolvoFH500 v = _fill();
+        v.loadVehicle(new Saab95());
+    }
 }
