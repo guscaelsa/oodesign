@@ -18,7 +18,7 @@ public class Scania extends RoadVehicle {
 
     @Override
     public double speedFactor() {
-        return 0;
+        return 1;
     }
 
     /**

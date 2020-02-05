@@ -15,7 +15,7 @@ public class VolvoFH500 extends RoadVehicle {
 
     @Override
     public double speedFactor() {
-        return 0;
+        return 1;
     }
 
     public void loadVehicle(RoadVehicle v) {
