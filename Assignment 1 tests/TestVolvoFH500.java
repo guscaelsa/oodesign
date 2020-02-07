@@ -35,7 +35,7 @@ public class TestVolvoFH500 {
         v.lowerRamp();
         Saab95 s = new Saab95();
         s.setPos(new double[]{1, 1});
-        v.loadVehicle(s);
+        v.load(s);
     }
 
     @Test(expected = RuntimeException.class)
@@ -43,31 +43,31 @@ public class TestVolvoFH500 {
         v.lowerRamp();
         Saab95 s = new Saab95();
         s.setPos(new double[]{2, 2});
-        v.loadVehicle(s);
+        v.load(s);
     }
 
     @Test(expected = RuntimeException.class)
     public void loadBadRamp() {
         Saab95 s = new Saab95();
         s.setPos(new double[]{1, 1});
-        v.loadVehicle(s);
+        v.load(s);
     }
 
     @Test
     public void unloadOK() {
         v.lowerRamp();
         Saab95 s = new Saab95();
-        v.loadVehicle(s);
-        v.unloadVehicle();
+        v.load(s);
+        v.unload();
     }
 
     @Test(expected = RuntimeException.class)
     public void unloadBadRamp() {
         v.lowerRamp();
         Saab95 s = new Saab95();
-        v.loadVehicle(s);
+        v.load(s);
         v.raiseRamp();
-        v.unloadVehicle();
+        v.unload();
     }
 
     @Test
@@ -75,27 +75,27 @@ public class TestVolvoFH500 {
         v.lowerRamp();
         Saab95 s1 = new Saab95();
         Saab95 s2 = new Saab95();
-        v.loadVehicle(s1);
-        v.loadVehicle(s2);
+        v.load(s1);
+        v.load(s2);
 
         help.print("unloading #2");
-        assertEquals(v.unloadVehicle(), s2);
+        assertEquals(v.unload(), s2);
         help.print("unloading #1");
-        assertEquals(v.unloadVehicle(), s1);
+        assertEquals(v.unload(), s1);
     }
 
     @Test(expected = RuntimeException.class)
     public void testCantLoadSelf() {
         v.lowerRamp();
         VolvoFH500 v2 = new VolvoFH500();
-        v.loadVehicle(v2);
+        v.load(v2);
     }
 
     @Test
     public void testSamePos() {
         v.lowerRamp();
         Saab95 s = new Saab95();
-        v.loadVehicle(s);
+        v.load(s);
         v.raiseRamp();
         v.startEngine();
         for (int i=0; i<5; ++i) {
@@ -114,7 +114,7 @@ public class TestVolvoFH500 {
         VolvoFH500 v = new VolvoFH500();
         v.lowerRamp();
         for (int i=0; i<VolvoFH500.CAR_CAPACITY; ++i) {
-            v.loadVehicle(new Saab95());
+            v.load(new Saab95());
         }
         return v;
     }
@@ -122,6 +122,6 @@ public class TestVolvoFH500 {
     @Test(expected = RuntimeException.class)
     public void testFull() {
         VolvoFH500 v = _fill();
-        v.loadVehicle(new Saab95());
+        v.load(new Saab95());
     }
 }

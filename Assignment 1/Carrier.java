@@ -1,11 +1,7 @@
 import static java.lang.Math.abs;
 
-public interface Carrier extends Movable {
+public interface Carrier extends Movable, Transporter<RoadVehicle> {
     boolean isRampDown();
-
-    void loadVehicle(RoadVehicle v);
-
-    RoadVehicle unloadVehicle();
 
     default void loadCheck(RoadVehicle v) {
         if (!isRampDown()) {

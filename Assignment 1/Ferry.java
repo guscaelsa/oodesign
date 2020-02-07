@@ -22,13 +22,13 @@ public class Ferry extends Vehicle implements Carrier {
     }
 
     @Override
-    public void loadVehicle(RoadVehicle v) {
+    public void load(RoadVehicle v) {
         loadCheck(v);
         storage.push(v);
     }
 
     @Override
-    public RoadVehicle unloadVehicle() {
+    public RoadVehicle unload() {
         unloadCheck();
         return storage.pop();
     }
