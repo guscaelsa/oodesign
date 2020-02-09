@@ -2,6 +2,19 @@ import java.awt.*;
 
 import static java.lang.Math.abs;
 
+/**
+ * A car-carrying truck
+ * <p>
+ *     Has a ramp; when the ramp is up, cars can't be loaded and when the ramp
+ *     is down, the ferry can't move.
+ * </p>
+ * <p>
+ *     Can carry 6 cars, each weighing at most 4000 (kg).
+ * </p>
+ * <p>
+ *     Car storage is last-in first-out.
+ * </p>
+ */
 public class VolvoFH500 extends RoadVehicle implements Carrier {
     static final int CAR_CAPACITY = 6;
     static final int MAX_CAR_WEIGHT = 4000;

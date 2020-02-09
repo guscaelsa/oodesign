@@ -1,10 +1,23 @@
 import java.awt.*;
 
+/**
+ * A Ferry
+ * <p>
+ *     Has a ramp; when the ramp is up, cars can't be loaded and when the ramp
+ *     is down, the ferry can't move.
+ * </p>
+ * <p>
+ *     Can carry 20 cars, each weighing at most 18000 (kg).
+ * </p>
+ * <p>
+ *     Car storage is first-in first-out.
+ * </p>
+ */
 public class Ferry extends Vehicle implements Carrier {
     static final int CAR_CAPACITY = 20;
     static final int MAX_CAR_WEIGHT = 18000;
     private boolean rampDown = false;
-    VehicleStorage<RoadVehicle> storage = new VehicleStorage<>(
+    private VehicleStorage<RoadVehicle> storage = new VehicleStorage<>(
             VehicleStorage.fifoQueue(), CAR_CAPACITY, MAX_CAR_WEIGHT);
 
     public Ferry() {
