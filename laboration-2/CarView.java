@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 
 public class CarView extends JFrame{
     private static final int X = 800;
-    private static final int Y = 800;
+    private static final int Y = 600;
 
     // The controller member
     CarController carC;
@@ -90,13 +90,13 @@ public class CarView extends JFrame{
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
-        startButton.setPreferredSize(new Dimension(X/5-15,200));
+        startButton.setPreferredSize(new Dimension(X/6-15,200));
         this.add(startButton);
 
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
-        stopButton.setPreferredSize(new Dimension(X/5-15,200));
+        stopButton.setPreferredSize(new Dimension(X/6-15,200));
         this.add(stopButton);
 
         // This actionListener is for the gas button only
