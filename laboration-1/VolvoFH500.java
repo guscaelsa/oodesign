@@ -1,7 +1,5 @@
 import java.awt.*;
 
-import static java.lang.Math.abs;
-
 /**
  * A car-carrying truck
  * <p>

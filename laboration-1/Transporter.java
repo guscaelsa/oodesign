@@ -21,3 +21,20 @@ public interface Transporter<T> {
      */
     T unload();
 }
+
+
+class Kangaroo implements Transporter<MyTransportable> {
+
+    @Override
+    public void load(MyTransportable myTransportable) {
+
+    }
+
+    @Override
+    public MyTransportable unload() {
+        return null;
+    }
+}
+
+interface MyTransportable {
+}
