@@ -1,0 +1,6 @@
+This is assignment 2, which has two parts:
+
+* A
+[[task_a.org]]
+* B
+To be added...
