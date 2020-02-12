@@ -16,6 +16,11 @@ public class Scania extends RoadVehicle {
         super(2, 90, Color.BLUE, "Scania", 17000);
     }
 
+    public Scania(int x, int y) {
+        this();
+        setPos(new double[]{x, y});
+    }
+
     @Override
     public double speedFactor() {
         return 1;

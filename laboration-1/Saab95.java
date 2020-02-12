@@ -10,7 +10,12 @@ public class Saab95 extends RoadVehicle {
         super(2, 125, Color.RED, "Saab95", 2110);
 	    turboOn = false;
     }
-    
+
+    public Saab95(int x, int y) {
+        this();
+        setPos(new double[]{x, y});
+    }
+
     public void setTurboOn(){
 	    turboOn = true;
     }

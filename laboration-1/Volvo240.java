@@ -11,6 +11,11 @@ public class Volvo240 extends RoadVehicle {
         enginePower = 100;
     }
 
+    public Volvo240(int x, int y) {
+        this();
+        setPos(new double[]{x, y});
+    }
+
     @Override
     public double speedFactor(){
         return enginePower * 0.01 * trimFactor;

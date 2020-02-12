@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class CarController {
     // member fields:
-
+    private static final int CAR_HEIGHT = 60;
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
@@ -29,7 +29,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
+        cc.cars.add(new Volvo240(0, 0));
+        cc.cars.add(new Scania(100, 0));
+        cc.cars.add(new Saab95(200, 0));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -47,7 +49,18 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getPos()[0]);
                 int y = (int) Math.round(car.getPos()[1]);
-                frame.drawPanel.moveit(x, y);
+                if (y + CAR_HEIGHT >= CarView.DRAW_Y) {
+                    car.turnLeft();
+                    car.turnLeft();
+                    car.move();
+                }
+                if (y <= 0) {
+                    car.turnLeft();
+                    car.turnLeft();
+                    car.move();
+                }
+                //frame.drawPanel.moveit(x, y);
+                frame.drawPanel.updatePos(car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
@@ -60,6 +73,14 @@ public class CarController {
         for (RoadVehicle car : cars
                 ) {
             car.gas(gas);
+        }
+    }
+
+    void brake(int amount) {
+        double frac = ((double) amount) / 100;
+        for (RoadVehicle car : cars
+        ) {
+            car.brake(frac);
         }
     }
 }
