@@ -1,0 +1,6 @@
+This is assignment 1, which has two parts:
+
+* A
+[[file:task_a.org]]
+* B
+[[file:task_b.org]]

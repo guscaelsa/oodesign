@@ -1,0 +1,14 @@
+These are the two assignments for DIT 953:
+
+* Labb 1
+[[file:laboration-1]]
+** 1A tasks
+[[file:laboration-1/task_a.org]]
+** 1B tasks
+[[file:laboration-1/task_b.org]]
+* Labb 2
+[[file:laboration-2]]
+** 2A tasks
+[[file:laboration-2/task_a.org]]
+** 2B tasks
+[[file:laboration-2/task_b.org]]
