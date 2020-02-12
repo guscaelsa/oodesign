@@ -40,6 +40,65 @@ public class CarController {
         cc.timer.start();
     }
 
+    public void turboOff() {
+        for (RoadVehicle car : cars) {
+            try {
+                Saab95 c = (Saab95)car;
+                c.setTurboOff();
+            } catch (ClassCastException e) {
+                // pass
+            }
+        }
+    }
+    public void turboOn() {
+        for (RoadVehicle car : cars) {
+            try {
+                Saab95 c = (Saab95)car;
+                c.setTurboOn();
+            } catch (ClassCastException e) {
+                // pass
+            }
+        }
+    }
+
+    public void liftBed() {
+        for (RoadVehicle car : cars) {
+            try {
+                Scania c = (Scania) car;
+                c.raisePlatform(Scania.MAX_ANGLE);
+            } catch (RuntimeException e) {
+                // pass
+            }
+        }
+    }
+
+    public void lowerBed() {
+        for (RoadVehicle car : cars) {
+            try {
+                Scania c = (Scania) car;
+                c.lowerPlatform(Scania.MAX_ANGLE);
+            } catch (RuntimeException e) {
+                // pass
+            }
+        }
+    }
+
+    public void startAll() {
+        for (RoadVehicle car : cars) {
+            try {
+                car.startEngine();
+            } catch (RuntimeException e) {
+                // pass
+            }
+        }
+    }
+
+    public void stopAll() {
+        for (RoadVehicle car : cars) {
+            car.stopEngine();
+        }
+    }
+
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.
     * */
@@ -49,12 +108,12 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getPos()[0]);
                 int y = (int) Math.round(car.getPos()[1]);
-                if (y + CAR_HEIGHT >= CarView.DRAW_Y) {
+                if (y + CAR_HEIGHT > CarView.DRAW_Y) {
                     car.turnLeft();
                     car.turnLeft();
                     car.move();
                 }
-                if (y <= 0) {
+                if (y < 0) {
                     car.turnLeft();
                     car.turnLeft();
                     car.move();
@@ -72,7 +131,11 @@ public class CarController {
         double gas = ((double) amount) / 100;
         for (RoadVehicle car : cars
                 ) {
-            car.gas(gas);
+            try {
+                car.gas(gas);
+            } catch (RuntimeException e) {
+                // pass
+            }
         }
     }
 
