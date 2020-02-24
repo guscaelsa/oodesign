@@ -23,47 +23,50 @@ Nya ansvarsområden:
 + DrawPanel :: ritar bilar
 + CarChanger :: hjälpklass som vet att det är ~Scania~ som har ~liftBed()~, etc.
 
+** anropskedja
++ liftBedButton.addActionListener(new ActionListener()
+
 ** plan
 *** flytta
-CarChanger    -> styrning.CarChanger
-CarController -> styrning.CarController
-CarView       -> gui.CarView
-DrawPanel     -> gui.DrawPanel
+CarChanger    -> CarChanger
+CarController -> CarController
+CarView       -> CarView
+DrawPanel     -> DrawPanel
 
 *** skapa:
-interface ButtonController
-    - kopplar ihop / begränsar beroenden mellan gui / control
-    - skapa _click_event_functions_()
++ interface ButtonController
+  - kopplar ihop / begränsar beroenden mellan gui / control
+  - skapa _click_event_functions_()
 
 *** Nya ansvarsområden:
 - model
-  class model.World
-      - håller ArrayList<Car>, bilar som ska ritas
-      - flytta funktionalitet från CarController.TimerListener till World
+  + class model.World
+    - håller ArrayList<Car>, bilar som ska ritas
+    - flytta funktionalitet från CarController.TimerListener till World
         genom att skapa metod update() som uppdaterar bilarnas position
-  class model.Car
-      - flytta funktionalitet från gui.DrawPanel som gäller:
+  + class model.Car
+    - flytta funktionalitet från DrawPanel som gäller:
         point:Point, image:BufferedImage, vehicle:Roadvehicle,
         paintComponent(), gui.DrawPanel bara ritar panel
 - gui
-    class CarView
-      - flytta DrawPanel konstruktorn till gui.CarView
-      - behåll funktionalitet kopplad till knapptryckningar/bilar
-      - ändra: knapptryckningar skickas vidare till ButtonController
-  class DrawPanel
-      - klassen gui.DrawPanel behåller bara funktionalitet som ritar panel
-        (dvs. ritar till slut, bilar i panelen)
-      - flytta hit (från CarView) funktionalitet kopplad till
-        knapptryckningar/panel
+  + class CarView
+    - flytta DrawPanel konstruktorn till CarView
+    - behåll funktionalitet kopplad till knapptryckningar/bilar
+    - ändra: knapptryckningar skickas vidare till ButtonController
+  + class DrawPanel
+    - klassen DrawPanel behåller bara funktionalitet som ritar panel
+      (dvs. ritar till slut, bilar i panelen)
+    - flytta hit (från CarView) funktionalitet kopplad till
+      knapptryckningar/panel
 - control
-    class CarController
-      - implementerar CarView._click_event_functions_()
-      - håller kontakt med World, sätter igång World's timer
-      - behåll kod från CarController, men generalisera användande av
-        bilar och om möjligt minska kodduplicering genom användning av
-        metoder i CarChanger
-  class CarChanger
-      - skapa metoder som ska "veta" att det är "Scania" som har
-        "liftBed" etc.
+  + class CarController
+    - implementerar CarView._click_event_functions_()
+    - håller kontakt med World, sätter igång World's timer
+    - behåll kod från CarController, men generalisera användande av
+      bilar och om möjligt minska kodduplicering genom användning av
+      metoder i CarChanger
+  + class CarChanger
+    - skapa metoder som ska "veta" att det är "Scania" som har
+      "liftBed" etc.
 * B
-To be added...
+[[file:task_b.org]]
