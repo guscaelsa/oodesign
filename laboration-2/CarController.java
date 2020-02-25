@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -9,22 +8,33 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  */
 
-public class CarController { // TODO Elsa
+public class CarController implements ButtonController {
     // member fields:
-    private static final int CAR_HEIGHT = 60;
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
+    private Timer timer;
 
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
 
-    World world = new World();
+    private World world = new World();
 
     public CarController(RoadVehicle[] roadVehicles) {
         world.addAll(roadVehicles);
+        timer = new Timer(delay, e -> {
+            world.step();
+            reDraw();
+        });
+    }
+
+    private void reDraw() {
+        for (RoadVehicle car : world.cars) {
+            frame.drawPanel.updatePos(car);
+        }
+        // repaint() calls the paintComponent method of the panel
+        frame.drawPanel.repaint();
     }
 
     //methods:
@@ -43,110 +53,61 @@ public class CarController { // TODO Elsa
         cc.timer.start();
     }
 
+    @Override
     public void turboOff() {
         for (RoadVehicle car : world.cars) {
-            try {
-                Saab95 c = (Saab95)car;
-                c.setTurboOff();
-            } catch (ClassCastException e) {
-                // pass
-            }
+            CarChanger.turboOff(car);
         }
     }
+    @Override
     public void turboOn() {
         for (RoadVehicle car : world.cars) {
-            try {
-                Saab95 c = (Saab95)car;
-                c.setTurboOn();
-            } catch (ClassCastException e) {
-                // pass
-            }
+            CarChanger.turboOn(car);
         }
     }
 
+    @Override
     public void liftBed() {
         for (RoadVehicle car : world.cars) {
-            try {
-                Scania c = (Scania) car;
-                c.raisePlatform(Scania.MAX_ANGLE);
-            } catch (RuntimeException e) {
-                // pass
-            }
+            CarChanger.liftBed(car);
         }
     }
 
+    @Override
     public void lowerBed() {
         for (RoadVehicle car : world.cars) {
-            try {
-                Scania c = (Scania) car;
-                c.lowerPlatform(Scania.MAX_ANGLE);
-            } catch (RuntimeException e) {
-                // pass
-            }
+            CarChanger.lowerBed(car);
         }
     }
 
+    @Override
     public void startAll() {
         for (RoadVehicle car : world.cars) {
-            try {
-                car.startEngine();
-            } catch (RuntimeException e) {
-                // pass
-            }
+            CarChanger.start(car);
         }
     }
 
+    @Override
     public void stopAll() {
         for (RoadVehicle car : world.cars) {
-            car.stopEngine();
-        }
-    }
-
-    /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (RoadVehicle car : world.cars) {
-                car.move();
-                int x = (int) Math.round(car.getPos()[0]);
-                int y = (int) Math.round(car.getPos()[1]);
-                if (y + CAR_HEIGHT > CarView.DRAW_Y) {
-                    car.turnLeft();
-                    car.turnLeft();
-                    car.move();
-                }
-                if (y < 0) {
-                    car.turnLeft();
-                    car.turnLeft();
-                    car.move();
-                }
-                //frame.drawPanel.moveit(x, y);
-                frame.drawPanel.updatePos(car);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-            }
+            CarChanger.stop(car);
         }
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (RoadVehicle car : world.cars
-                ) {
-            try {
-                car.gas(gas);
-            } catch (RuntimeException e) {
-                // pass
-            }
+    @Override
+    public void gas(int ticker_value) {
+        double amount = ((double) ticker_value) / 100;
+        for (RoadVehicle car : world.cars) {
+            CarChanger.gas(car, amount);
         }
     }
 
-    void brake(int amount) {
-        double frac = ((double) amount) / 100;
-        for (RoadVehicle car : world.cars
-        ) {
-            car.brake(frac);
+    @Override
+    public void brake(int ticker_value) {
+        double amount = ((double) ticker_value) / 100;
+        for (RoadVehicle car : world.cars) {
+            CarChanger.brake(car, amount);
         }
     }
 }
