@@ -9,7 +9,7 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  */
 
-public class CarController {
+public class CarController { // TODO Elsa
     // member fields:
     private static final int CAR_HEIGHT = 60;
     // The delay (ms) corresponds to 20 updates a sec (hz)
@@ -20,18 +20,21 @@ public class CarController {
 
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
-    // A list of cars, modify if needed
-    ArrayList<RoadVehicle> cars = new ArrayList<>();
+
+    World world = new World();
+
+    public CarController(RoadVehicle[] roadVehicles) {
+        world.addAll(roadVehicles);
+    }
 
     //methods:
 
     public static void main(String[] args) {
         // Instance of this class
-        CarController cc = new CarController();
-
-        cc.cars.add(new Volvo240(0, 0));
-        cc.cars.add(new Scania(100, 0));
-        cc.cars.add(new Saab95(200, 0));
+        CarController cc = new CarController(new RoadVehicle[]{
+                new Volvo240(0, 0),
+                new Scania(100, 0),
+                new Saab95(200, 0)});
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -41,7 +44,7 @@ public class CarController {
     }
 
     public void turboOff() {
-        for (RoadVehicle car : cars) {
+        for (RoadVehicle car : world.cars) {
             try {
                 Saab95 c = (Saab95)car;
                 c.setTurboOff();
@@ -51,7 +54,7 @@ public class CarController {
         }
     }
     public void turboOn() {
-        for (RoadVehicle car : cars) {
+        for (RoadVehicle car : world.cars) {
             try {
                 Saab95 c = (Saab95)car;
                 c.setTurboOn();
@@ -62,7 +65,7 @@ public class CarController {
     }
 
     public void liftBed() {
-        for (RoadVehicle car : cars) {
+        for (RoadVehicle car : world.cars) {
             try {
                 Scania c = (Scania) car;
                 c.raisePlatform(Scania.MAX_ANGLE);
@@ -73,7 +76,7 @@ public class CarController {
     }
 
     public void lowerBed() {
-        for (RoadVehicle car : cars) {
+        for (RoadVehicle car : world.cars) {
             try {
                 Scania c = (Scania) car;
                 c.lowerPlatform(Scania.MAX_ANGLE);
@@ -84,7 +87,7 @@ public class CarController {
     }
 
     public void startAll() {
-        for (RoadVehicle car : cars) {
+        for (RoadVehicle car : world.cars) {
             try {
                 car.startEngine();
             } catch (RuntimeException e) {
@@ -94,7 +97,7 @@ public class CarController {
     }
 
     public void stopAll() {
-        for (RoadVehicle car : cars) {
+        for (RoadVehicle car : world.cars) {
             car.stopEngine();
         }
     }
@@ -104,7 +107,7 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (RoadVehicle car : cars) {
+            for (RoadVehicle car : world.cars) {
                 car.move();
                 int x = (int) Math.round(car.getPos()[0]);
                 int y = (int) Math.round(car.getPos()[1]);
@@ -129,7 +132,7 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (RoadVehicle car : cars
+        for (RoadVehicle car : world.cars
                 ) {
             try {
                 car.gas(gas);
@@ -141,7 +144,7 @@ public class CarController {
 
     void brake(int amount) {
         double frac = ((double) amount) / 100;
-        for (RoadVehicle car : cars
+        for (RoadVehicle car : world.cars
         ) {
             car.brake(frac);
         }
