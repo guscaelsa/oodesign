@@ -68,5 +68,15 @@ DrawPanel     -> DrawPanel
   + class CarChanger
     - skapa metoder som ska "veta" att det är "Scania" som har
       "liftBed" etc.
+
+** designmönster
+*** Observer
+Vi behöver inte vända några metoder, alla beroenden går åt samma håll.
+*** Factory Method
+Har inte behov. Vill alltid ha en specifik klass när vi skapar objekt.
+*** State
+Har inte en Finite State Machine.
+*** Composite
+Resultatet av knapptryckningar är (typ) Composite Pattern; de går igneom en lista och gör samma enda sak på alla.
 * B
 [[file:task_b.org]]

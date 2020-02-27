@@ -6,20 +6,10 @@ public class Application extends JFrame {
     private static final int Y = 600;
     private final int delay = 50;
 
-    int gasAmount;
-
-    Application() {
+    Application(RoadVehicle[] roadVehicles) {
         this.setTitle("CarSim 2.0");
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
-        RoadVehicle[] roadVehicles = new RoadVehicle[]{
-                new Volvo240(0, 0),
-                new Scania(100, 0),
-                new Saab95(200, 0)};
-        for (RoadVehicle car : roadVehicles) {
-            car.gas(1);
-        }
 
         int SIM_HEIGHT = (int) (Y * 0.8);
 
@@ -52,6 +42,9 @@ public class Application extends JFrame {
 
 
     public static void main(String[] args) {
-        Application app = new Application();
+        Application app = new Application(new RoadVehicle[]{
+                new Volvo240(0, 0),
+                new Scania(100, 0),
+                new Saab95(200, 0)});
     }
 }
