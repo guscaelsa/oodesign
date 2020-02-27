@@ -21,10 +21,15 @@ public class Application extends JFrame {
             car.gas(1);
         }
 
-        World world = new World();
+        int SIM_HEIGHT = (int) (Y * 0.8);
+
+        World world = new World(SIM_HEIGHT);
         world.addAll(roadVehicles);
-        WorldView drawPanel = new WorldView(X,Y, world);
+
+        WorldView drawPanel = new WorldView(X,SIM_HEIGHT, world);
         this.add(drawPanel);
+        ControlPanel controlPanel = new ControlPanel(X, Y - SIM_HEIGHT, world);
+        this.add(controlPanel);
 
         Timer timer = new Timer(delay, e -> {
             world.step();
@@ -48,16 +53,5 @@ public class Application extends JFrame {
 
     public static void main(String[] args) {
         Application app = new Application();
-//        // Instance of this class
-//        CarController cc = new CarController(new RoadVehicle[]{
-//                new Volvo240(0, 0),
-//                new Scania(100, 0),
-//                new Saab95(200, 0)});
-//
-//        // Start a new view and send a reference of self
-//        cc.frame = new CarView("CarSim 1.0", cc);
-//
-//        // Start the timer
-//        cc.timer.start();
     }
 }

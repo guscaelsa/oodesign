@@ -8,6 +8,12 @@ public class World {
     // A list of cars, modify if needed
     ArrayList<RoadVehicle> cars = new ArrayList<>();
 
+    int height;
+
+    World(int height) {
+        this.height = height;
+    }
+
     public void addAll(RoadVehicle[] roadVehicles) {
         cars.addAll(Arrays.asList(roadVehicles));
     }
@@ -17,7 +23,7 @@ public class World {
             car.move();
             int x = (int) Math.round(car.getPos()[0]);
             int y = (int) Math.round(car.getPos()[1]);
-            if (y + CAR_HEIGHT > CarView.DRAW_Y) {
+            if (y + CAR_HEIGHT > height) {
                 car.turnLeft();
                 car.turnLeft();
                 car.move();

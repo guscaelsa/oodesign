@@ -19,7 +19,7 @@ public class CarController implements ButtonController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
 
-    private World world = new World();
+    private World world = new World(CarView.DRAW_Y);
 
     public CarController(RoadVehicle[] roadVehicles) {
         world.addAll(roadVehicles);
