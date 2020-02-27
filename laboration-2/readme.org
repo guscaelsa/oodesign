@@ -71,9 +71,11 @@ DrawPanel     -> DrawPanel
 
 ** designmönster
 *** Observer
-Vi behöver inte vända några metoder, alla beroenden går åt samma håll.
+Vi behöver inte vända några anrop/beroenden, alla beroenden går åt samma håll.
 *** Factory Method
 Har inte behov. Vill alltid ha en specifik klass när vi skapar objekt.
+
+Efter uppgift 6: ~CarChanger.createRandomCar()~ är en fabriksmetod.
 *** State
 Har inte en Finite State Machine.
 *** Composite

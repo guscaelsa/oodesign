@@ -2,8 +2,8 @@ import java.awt.*;
 
 public abstract class Vehicle implements Movable {
     private double currentSpeed;
-    private Color color;
-    protected double enginePower;
+    private final Color color;
+    protected final double enginePower;
 
     Mover m = new Mover();
 
@@ -21,9 +21,9 @@ public abstract class Vehicle implements Movable {
         return color;
     }
 
-    public void setColor(Color clr){
-        color = clr;
-    }
+//    public void setColor(Color clr){
+//        color = clr;
+//    }
 
     public double getEnginePower(){
         return enginePower;
@@ -67,7 +67,7 @@ public abstract class Vehicle implements Movable {
      * */
     @Override
     public void move() {
-        m.move(getCurrentSpeed());
+        m = m.move(getCurrentSpeed());
     }
 
     /**
@@ -75,7 +75,7 @@ public abstract class Vehicle implements Movable {
      * */
     @Override
     public void turnLeft() {
-        m.turn(-1);
+        m = m.turn(-1);
     }
 
     /**
@@ -83,7 +83,7 @@ public abstract class Vehicle implements Movable {
      * */
     @Override
     public void turnRight() {
-        m.turn(1);
+        m = m.turn(1);
     }
 
     /**
@@ -98,7 +98,6 @@ public abstract class Vehicle implements Movable {
      * Set current position
      * */
     public void setPos(double[] pos) {
-        m.x = pos[0];
-        m.y = pos[1];
+        m = m.at(pos);
     }
 }

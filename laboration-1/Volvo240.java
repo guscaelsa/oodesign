@@ -8,7 +8,6 @@ public class Volvo240 extends RoadVehicle {
 
     public Volvo240() {
         super(4, 100, Color.BLACK, "Volvo240", 1305);
-        enginePower = 100;
     }
 
     public Volvo240(int x, int y) {

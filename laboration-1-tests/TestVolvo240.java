@@ -19,21 +19,21 @@ public class TestVolvo240 {
         Volvo240 car = new Volvo240();
         help.print("starts as black?");
         assertEquals(car.getColor(), Color.black);
-        Color[] colors = new Color[] {
-                Color.RED,
-                Color.BLUE,
-                Color.CYAN,
-                Color.GREEN,
-                Color.MAGENTA,
-                Color.ORANGE,
-                Color.RED,
-                Color.BLACK,
-        };
-        for (Color c : colors) {
-            help.print("set to", c.toString() + "?");
-            car.setColor(c);
-            assertEquals(car.getColor(), c);
-        }
+//        Color[] colors = new Color[] {
+//                Color.RED,
+//                Color.BLUE,
+//                Color.CYAN,
+//                Color.GREEN,
+//                Color.MAGENTA,
+//                Color.ORANGE,
+//                Color.RED,
+//                Color.BLACK,
+//        };
+//        for (Color c : colors) {
+//            help.print("set to", c.toString() + "?");
+//            car.setColor(c);
+//            assertEquals(car.getColor(), c);
+//        }
     }
 
     @Test

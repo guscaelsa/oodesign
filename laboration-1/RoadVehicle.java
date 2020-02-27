@@ -4,8 +4,8 @@ import java.awt.*;
  * Base class for Vehicles
  * */
 public abstract class RoadVehicle extends Vehicle implements Movable {
-    private int nrDoors;
-    private String modelName;
+    private final int nrDoors;
+    private final String modelName;
     public final int weight; // kg
 
     public RoadVehicle(int nrDoors, double enginePower, Color color, String modelName, int weight) {

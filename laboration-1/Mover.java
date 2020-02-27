@@ -5,15 +5,27 @@ public class Mover {
     /**
      * Current <i>x</i> position
      * */
-    public double x = 0;
+    public final double x;
     /**
      * Current <i>y</i> position
      * */
-    public double y = 0;
+    public final double y;
 
     static final private int[][] deltas = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     static final private int DIR_MOD = deltas.length;
-    private int dir = 0;
+    private final int dir;
+
+    public Mover() {
+        this.x = 0;
+        this.y = 0;
+        this.dir = 0;
+    }
+
+    private Mover(double x, double y, int d) {
+        this.x = x;
+        this.y = y;
+        this.dir = d;
+    }
 
     /**
      * Turn some whole number of steps "steps"
@@ -21,21 +33,24 @@ public class Mover {
      *     Positive means clockwise, negative means counter-clockwise.
      *</p>
      * */
-    void turn(int amount) {
+    Mover turn(int amount) {
         while (amount < 0) {
             amount += DIR_MOD;
         }
-        dir += amount;
-        dir %= DIR_MOD;
+        int d = (dir + amount) % DIR_MOD;
+//        dir += amount;
+//        dir %= DIR_MOD;
+        return new Mover(x, y, d);
     }
 
     /**
      * Move by 'speed' is the current direction
      * */
-    public void move(double speed) {
+    public Mover move(double speed) {
         int[] delta = deltas[dir];
-        x += delta[0] * speed;
-        y += delta[1] * speed;
+        return new Mover(x + delta[0] * speed, y + delta[1] * speed, dir);
+//        x += delta[0] * speed;
+//        y += delta[1] * speed;
     }
 
     /**
@@ -54,6 +69,10 @@ public class Mover {
             default:
                 throw new RuntimeException("Internal error");
         }
+    }
+
+    public Mover at(double[] pos) {
+        return new Mover(pos[0], pos[1], dir);
     }
 }
 

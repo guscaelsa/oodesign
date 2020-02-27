@@ -31,7 +31,7 @@ public class TestMover {
 
     void turnAndCheck(Mover m, int amount, Direction expected_dir) {
         help.print("Amount:", amount, "Start:", m.direction());
-        m.turn(amount);
+        m = m.turn(amount);
         assertEquals(expected_dir, m.direction());
     }
 }
