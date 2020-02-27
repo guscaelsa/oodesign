@@ -12,18 +12,23 @@ public class Application extends JFrame {
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         int SIM_HEIGHT = (int) (Y * 0.65);
+        int SIM_WIDTH = (int) (X * 0.8);
 
         World world = new World(SIM_HEIGHT);
         world.addAll(roadVehicles);
 
-        WorldView drawPanel = new WorldView(X,SIM_HEIGHT, world);
+        WorldView drawPanel = new WorldView(SIM_WIDTH, SIM_HEIGHT, world);
         this.add(drawPanel);
+        Speedometer speedometer = new Speedometer(world);
+        this.add(speedometer);
         ControlPanel controlPanel = new ControlPanel(X, Y - SIM_HEIGHT, world);
         this.add(controlPanel);
+
 
         Timer timer = new Timer(delay, e -> {
             world.step();
             drawPanel.repaint();
+            speedometer.repaint();
         });
         timer.start();
 

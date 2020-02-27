@@ -46,4 +46,8 @@ public abstract class RoadVehicle extends Vehicle implements Movable {
         }
         decrementSpeed(amount);
     }
+
+    public String getModelName() {
+        return modelName;
+    }
 }
