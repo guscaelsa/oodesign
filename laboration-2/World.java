@@ -1,5 +1,3 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,7 +19,7 @@ public class World {
     public void step() {
         for (RoadVehicle car : cars) {
             car.move();
-            int x = (int) Math.round(car.getPos()[0]);
+            //int x = (int) Math.round(car.getPos()[0]);
             int y = (int) Math.round(car.getPos()[1]);
             if (y + CAR_HEIGHT > height) {
                 car.turnLeft();
@@ -34,5 +32,9 @@ public class World {
                 car.move();
             }
         }
+    }
+
+    public void add(RoadVehicle c) {
+        cars.add(c);
     }
 }

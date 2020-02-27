@@ -11,7 +11,7 @@ public class Application extends JFrame {
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
-        int SIM_HEIGHT = (int) (Y * 0.8);
+        int SIM_HEIGHT = (int) (Y * 0.65);
 
         World world = new World(SIM_HEIGHT);
         world.addAll(roadVehicles);
@@ -42,7 +42,7 @@ public class Application extends JFrame {
 
 
     public static void main(String[] args) {
-        Application app = new Application(new RoadVehicle[]{
+        new Application(new RoadVehicle[]{
                 new Volvo240(0, 0),
                 new Scania(100, 0),
                 new Saab95(200, 0)});

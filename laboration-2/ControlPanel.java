@@ -17,6 +17,9 @@ public class ControlPanel extends JPanel {
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
+    JButton addCarButton = new JButton("Add random car");
+    JButton removeCarButton = new JButton("Remove random car");
+
     World world;
 
     ControlPanel(int w, int h, World world) {
@@ -35,20 +38,24 @@ public class ControlPanel extends JPanel {
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
         this.add(gasPanel);
+        this.add(gasButton);
+        gasButton.setPreferredSize(new Dimension((int) (w*0.2), (int) (h*0.2)));
+        this.add(brakeButton);
+        brakeButton.setPreferredSize(new Dimension((int) (w*0.2), (int) (h*0.2)));
 
         JPanel buttons = new JPanel();
-        buttons.setLayout(new GridLayout(2,4));
-        buttons.setPreferredSize(new Dimension((int) (w*0.7), (int) (h*0.6)));
+        buttons.setLayout(new GridLayout(2,6));
+        buttons.setPreferredSize(new Dimension(w, (int) (h*0.6)));
 
-        buttons.add(gasButton, 0);
-        buttons.add(turboOnButton, 1);
-        buttons.add(liftBedButton, 2);
-        buttons.add(startButton, 3);
+        buttons.add(turboOnButton);
+        buttons.add(liftBedButton);
+        buttons.add(startButton);
+        buttons.add(addCarButton);
 
-        buttons.add(brakeButton, 4);
-        buttons.add(turboOffButton, 5);
-        buttons.add(lowerBedButton, 6);
-        buttons.add(stopButton, 7);
+        buttons.add(turboOffButton);
+        buttons.add(lowerBedButton);
+        buttons.add(stopButton);
+        buttons.add(removeCarButton);
         this.add(buttons);
 
         this.setPreferredSize(new Dimension(w, h));
@@ -56,7 +63,6 @@ public class ControlPanel extends JPanel {
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
-
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
@@ -72,6 +78,21 @@ public class ControlPanel extends JPanel {
 
         startButton.addActionListener(e -> startAll());
         stopButton.addActionListener(e -> stopAll());
+        
+        addCarButton.addActionListener(e -> addCar());
+        removeCarButton.addActionListener(e -> removeCar());
+    }
+
+    private void addCar() {
+        if (world.cars.size() < 10) {
+            world.add(CarChanger.createRandomCar());
+        }
+    }
+
+    private void removeCar() {
+        if (world.cars.size() > 0) {
+            CarChanger.removeRandomCar(world.cars);
+        }
     }
 
     public void turboOff() {
